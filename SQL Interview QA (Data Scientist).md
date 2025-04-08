@@ -3,13 +3,29 @@
 ## Questions & Answers
 
 ### Q1: What are joins in SQL and discuss its types?
-A JOIN clause is used to combine rows from two or more tables, based on a related column between them. It is used to merge two tables or retrieve data from there. There are 4 types of joins: inner join left join, right join, and full join.
 
-* Inner join: Inner Join in SQL is the most common type of join. It is used to return all the rows from multiple tables where the join condition is satisfied. 
-* Left Join:  Left Join in SQL is used to return all the rows from the left table but only the matching rows from the right table where the join condition is fulfilled.
-* Right Join: Right Join in SQL is used to return all the rows from the right table but only the matching rows from the left table where the join condition is fulfilled.
-* Full Outer Join: Full join returns all the records when there is a match in any of the tables. Therefore, it returns all the rows from the left-hand side table and all the rows from the right-hand side table.
-![alt text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/Joins%20in%20SQL.png)
+Answer:
+
+In SQL, a **JOIN** clause is used to combine rows from two or more tables, based on a related column between them. Joins are essential for retrieving data stored across different tables in a relational database.
+
+#### Main Types of Joins:
+
+* **Inner join:** Most common type of join. Returns only the rows where there is a match in both tables.
+* **Left Join:**  Returns all rows from the left table and the matched rows from the right table. Returns `NULL` for right table columns when no match exists.
+* **Right Join:** Returns all rows from the right table and the matched rows from the left table. Returns `NULL` for left table columns when no match exists.
+* **Full Outer Join:** Returns all rows when there is a match in one of the tables. Rows without a matching counterpart in the other table will show `NULL` values.
+
+*Note:* MySQL does not support FULL OUTER JOIN directly. Use a `UNION` of a left and right join instead. |
+
+**Extra Point:**  
+* **Cross Join:** Returns the Cartesian product of two tables (i.e., every row of table1 joined with every row of table2).  
+**Syntax Example:**
+
+```sql
+SELECT A.*, B.*
+FROM table1 A
+CROSS JOIN table2 B;
+```
 
 ---
 
@@ -34,18 +50,32 @@ A JOIN clause is used to combine rows from two or more tables, based on a relate
 ---
 
 ### Q3: What is the difference between BETWEEN and IN operators in SQL?
+
 Answer:
 
-The SQL **BETWEEN** operator selects values within a given range. It is inclusive of both the ranges, begin and end values are included.  The values can be text, date, numbers, or other
+- **BETWEEN Operator:**  
+  - **Usage:** Selects values within a specified range.  
+  - **Notes:** The range is inclusive (both start and end values are included).  
+  - **Example:**
 
-For example, select * from tablename where price BETWEEN 10 and 100;
+    ```sql
+    SELECT *
+    FROM tablename
+    WHERE price BETWEEN 10 AND 100;
+    ```
 
-The **IN** operator is used to select rows in which a certain value exists in a given field. It is used with the WHERE clause to match values in a list.
+- **IN Operator:**  
+  - **Usage:** Selects rows where a column's value matches any value in a provided list.  
+  - **Use Cases:** Best for categorical data but can also work with numeric values.  
+  - **Example:**
 
-For example, select COLUMN from tablename where 'USA' in (country);
+    ```sql
+    SELECT COLUMN
+    FROM tablename
+    WHERE country IN ('USA', 'Canada', 'UK');
+    ```
 
-IN is mainly best for Categorical Variables(it can be used with Numerical as well) whereas Between is for Numerical Variables
-![alt_text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/Betweem%26IN.png)
+---
 
 ### Q4: Assume you have the given table below which contains information on user logins. Write a query to obtain the number of reactivated users (Users who did not log in the previous month and then logged in the current month) ###
 ![Alt_text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/Screenshot%202022-07-31%20201033.png)
@@ -207,18 +237,15 @@ In MySQL, the 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 𝗮𝗻𝗱 𝗟𝗘𝗙�
 
 Generally, the 𝗟𝗘𝗙𝗧 𝗝𝗢𝗜𝗡 is used more frequently than the 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 because it returns all the rows from the left table and matching rows from the right table, or NULL values if there is no match.
 
-In most cases, a 𝗟𝗘𝗙𝗧 𝗝𝗢𝗜𝗡 is sufficient to meet the requirement of retrieving all the data from the left table and matching data from the right table.
-
-However, there may be situations where using a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 is more appropriate.
-
-Here are a few examples:
+While **LEFT JOIN** is commonly used and can cover many requirements, there are specific scenarios where a **RIGHT JOIN** may be more appropriate:
 
 𝟭. 𝗪𝗵𝗲𝗻 𝘁𝗵𝗲 𝗽𝗿𝗶𝗺𝗮𝗿𝘆 𝘁𝗮𝗯𝗹𝗲 𝗶𝘀 𝘁𝗵𝗲 𝗿𝗶𝗴𝗵𝘁 𝘁𝗮𝗯𝗹𝗲: If the right table contains the primary data that needs to be retrieved, and the left table contains supplementary data, a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 can be used to retrieve all the data from the right table and matching data from the left table.
 
 𝟮. 𝗪𝗵𝗲𝗻 𝘁𝗵𝗲 𝗾𝘂𝗲𝗿𝘆 𝗻𝗲𝗲𝗱𝘀 𝘁𝗼 𝗯𝗲 𝗼𝗽𝘁𝗶𝗺𝗶𝘇𝗲𝗱: In some cases, a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 may be more efficient than a 𝗟𝗘𝗙𝗧 𝗝𝗢𝗜𝗡 because the database optimizer can choose the most efficient join order based on the query structure and the available indexes.
 
 𝟯. 𝗪𝗵𝗲𝗻 𝘂𝘀𝗶𝗻𝗴 𝗼𝘂𝘁𝗲𝗿 𝗷𝗼𝗶𝗻𝘀: If the query requires an outer join, a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 may be used to return all the rows from the right table, including those with no matching rows in the left table.
-It's important to note that while a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 can provide additional functionality in certain cases, it may also make the query more complex and difficult to read. In most cases, a 𝗟𝗘𝗙𝗧 𝗝𝗢𝗜𝗡 is the preferred method for joining tables in MySQL.
+
+*However, note that many developers prefer LEFT JOIN by simply switching the table order, as it often improves readability.*
 
 ---
 
@@ -236,3 +263,325 @@ Here are some of the reasons why the rank function may skip a sequence in MySQL:
 3. The query may have filtering or grouping clauses that affect the ranking. For example, if a query filters out some rows or groups them by a different column, the ranking may not be sequential.
 
 It's important to note that the ranking function in MySQL behaves differently from the ranking function in other databases, so the same query may produce different results in different database systems.
+
+
+
+
+
+
+
+
+
+
+
+## SQL and DB Interview QA (Data Scientists)
+
+
+### Q1: What are Joins in SQL and Discuss Its Types?
+
+**Answer:**  
+
+### Q2: Define the Primary, Foreign, and Unique Keys and the Differences Between Them
+
+**Answer:**
+
+- **Primary Key:**  
+  - **Definition:** A primary key uniquely identifies each row in a table.  
+  - **Characteristics:**  
+    - Cannot contain `NULL` values.  
+    - Must contain unique values only.  
+    - There is only one primary key per table (which can be composite).  
+  - **Usage:** Helps maintain **entity integrity**.
+
+- **Foreign Key:**  
+  - **Definition:** A foreign key is a column or a set of columns used to establish and enforce a link between the data in two tables.  
+  - **Characteristics:**  
+    - References a primary key (or unique key) in another table.  
+    - Can contain `NULL` values if the relationship is optional.  
+  - **Usage:** Maintains **referential integrity**.
+
+- **Unique Key:**  
+  - **Definition:** A unique key constrains values so that no duplicates exist in a column (or group of columns), similar to a primary key.  
+  - **Differences from Primary Key:**  
+    - A table can have multiple unique keys.  
+    - Unique keys can allow one `NULL` (depending on the DBMS).  
+
+**Comparison Table:**
+
+| Key Type      | Uniqueness       | NULLs Allowed | Number Allowed      | Purpose                          |
+|---------------|------------------|---------------|---------------------|----------------------------------|
+| Primary Key   | Must be unique   | No            | One per table       | Unique row identification        |
+| Foreign Key   | May have duplicates; must match primary/unique key | Yes (if optional) | Multiple per table (pointing to one or more tables) | Establish relationships between tables |
+| Unique Key    | Must be unique   | Generally one allowed (varies by DBMS) | Multiple per table    | Enforce uniqueness in columns    |
+
+---
+
+### Q3: What is the Difference Between the BETWEEN and IN Operators in SQL?
+
+**Answer:**  
+
+
+**Visual Tip:**  
+Using a diagram (as shown in your screenshot) often helps interviewers see that **BETWEEN** provides a range filter while **IN** works by listing specific values.
+
+---
+
+### Q4: Write a Query to Obtain the Number of Reactivated Users
+
+**Scenario:** Users who did not log in the previous month but logged in during the current month.  
+**Assumption:** You have a table (`user_logins`) containing login records.
+
+**Answer:**  
+
+```sql
+SELECT 
+    DATE_TRUNC('month', current_month.login_date) AS current_month,
+    COUNT(*) AS num_reactivated_users 
+FROM 
+    user_logins current_month
+WHERE
+    NOT EXISTS (
+        SELECT 1
+        FROM user_logins last_month
+        WHERE DATE_TRUNC('month', last_month.login_date) = DATE_TRUNC('month', current_month.login_date) - INTERVAL '1 month'
+          AND last_month.user_id = current_month.user_id
+    )
+GROUP BY DATE_TRUNC('month', current_month.login_date);
+```
+
+**Enhancements:**  
+- Ensure that you also match on `user_id` so that you’re comparing the same users.
+- **Note:** The syntax for date functions (such as `DATE_TRUNC`) may vary between systems.
+
+---
+
+### Q5: Describe the Advantages and Disadvantages of Relational Databases vs. NoSQL Databases
+
+**Answer:**
+
+#### **Relational Databases**
+
+- **Advantages:**
+  - **ACID Compliance:** Guarantees data integrity.
+  - **Structured Schema:** Simplifies complex queries and enforces consistency.
+  - **Standardized Query Language:** Easy to use SQL across different systems.
+  - **Mature Technology:** Many robust, industry-standard RDBMS options.
+
+- **Disadvantages:**
+  - **Schema Rigidity:** Changing the schema can be challenging.
+  - **Horizontal Scalability Limitations:** Scaling out (across multiple machines) can be more complex.
+  - **Performance Bottlenecks:** May occur with very large datasets or heavy transactional load.
+
+#### **NoSQL Databases**
+
+- **Advantages:**
+  - **Schema Flexibility:** Can handle unstructured or semi-structured data.
+  - **Horizontal Scaling:** Designed to scale out by distributing data across many machines.
+  - **High Availability:** Often built for distributed data centers and fault tolerance.
+  - **Rapid Development:** Easier to iterate and add features without major schema changes.
+
+- **Disadvantages:**
+  - **Eventual Consistency:** Some NoSQL systems do not offer strong consistency guarantees.
+  - **Complex Queries:** May not handle complex joins or transactions as effectively.
+  - **Less Standardization:** Varying query languages and data models across systems.
+
+---
+
+### Q6: Write a Query to Obtain the Third Transaction of Every User
+
+**Answer:**  
+To pick the third transaction per user, you can use the **ROW_NUMBER()** window function:
+
+```sql
+SELECT user_id, transaction_date, amount
+FROM (
+    SELECT 
+        user_id, 
+        transaction_date, 
+        amount,
+        ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY transaction_date) AS txn_num
+    FROM user_transactions
+) sub
+WHERE txn_num = 3;
+```
+
+**Explanation:**  
+- **ROW_NUMBER()** numbers transactions per user.
+- The inner query partitions by `user_id` and orders by `transaction_date`.
+- The outer query filters transactions where the row number equals 3.
+
+---
+
+### Q7: What is a Self Join? Explain Using an Example
+
+**Answer:**  
+A **Self Join** is a regular join in which a table is joined with itself. This is useful when comparing rows within the same table.
+
+#### Example 1: Comparing Rows Within the Same Table
+
+Suppose you have a table, `employees`, with columns `employee_id`, `name`, and `department`. To find pairs of employees in the same department, you can write:
+
+```sql
+SELECT A.name AS Employee1, B.name AS Employee2, A.department
+FROM employees A
+JOIN employees B ON A.department = B.department
+WHERE A.employee_id <> B.employee_id;
+```
+
+#### Example 2: Hierarchical Data
+
+In an employee table where each employee may have a manager (stored as `manager_id` which references `employee_id`), a self join can help retrieve an employee’s manager name:
+
+```sql
+SELECT E.name AS Employee, M.name AS Manager
+FROM employees E
+LEFT JOIN employees M ON E.manager_id = M.employee_id;
+```
+
+---
+
+### Q8: Write an SQL Query to Join 3 Tables
+
+**Answer:**  
+Assume you have three tables: `orders`, `customers`, and `products`.  
+A typical join might look like:
+
+```sql
+SELECT 
+    o.order_id,
+    c.customer_name,
+    p.product_name
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+JOIN products p ON o.product_id = p.product_id;
+```
+
+**Explanation:**  
+- This query joins `orders` to `customers` using `customer_id` and then joins the result to `products` using `product_id`.
+
+---
+
+### Q9: Write a SQL Query to Get the Third-Highest Salary from `employee_table` and Arrange Them in Descending Order
+
+**Answer:**  
+
+#### **MySQL Approach Using LIMIT/OFFSET:**
+
+```sql
+SELECT DISTINCT salary 
+FROM employee_table 
+ORDER BY salary DESC 
+LIMIT 1 OFFSET 2;
+```
+
+**Explanation:**  
+- `ORDER BY salary DESC` sorts all salaries in descending order.
+- `DISTINCT` ensures you remove duplicates (if multiple employees have the same salary).
+- `LIMIT 1 OFFSET 2` skips the two highest distinct salaries and returns the next one (third highest).
+
+#### **Alternative Using Window Functions (MySQL 8.0+):**
+
+```sql
+SELECT employee_id, salary
+FROM (
+    SELECT 
+        employee_id,
+        salary,
+        DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_rank
+    FROM employee_table
+) ranked_employees
+WHERE salary_rank = 3;
+```
+
+**Explanation:**  
+- This query uses **DENSE_RANK()** to assign ranks based on the salary.
+- Then, it filters out the rows where the rank is 3.
+
+---
+
+### Q10: What is the Difference Between Temporary Tables and Common Table Expressions (CTEs)?
+
+**Answer:**
+
+| Feature            | Temporary Tables                                           | Common Table Expressions (CTEs)                    |
+|--------------------|------------------------------------------------------------|----------------------------------------------------|
+| **Definition**     | Physically created tables that exist for the duration of a session or until explicitly dropped.  | Virtual tables defined within the scope of a single SQL statement. |
+| **Persistence**    | Persist until the session ends or are manually dropped.    | Exist only during the execution of the query.       |
+| **Storage**        | Stored on disk (in the system’s temporary space).          | Exist in memory for the life of the query execution. |
+| **Reusability**    | Can be reused across multiple queries (in the same session). | Only available to the single query that defines them.|
+| **Syntax**         | `CREATE TEMPORARY TABLE table_name AS ...`                 | `WITH cte_name AS (...)`                           |
+| **Use Cases**      | Suitable for storing large intermediate results to be used multiple times.  | Best for simplifying complex queries by breaking them into logical building blocks. |
+
+**CTE Example:**
+
+```sql
+WITH Sales_CTE AS (
+  SELECT salesperson_id, SUM(sales) AS total_sales
+  FROM sales_data
+  GROUP BY salesperson_id
+)
+SELECT *
+FROM Sales_CTE
+WHERE total_sales > 100000;
+```
+
+**Temporary Table Example:**
+
+```sql
+CREATE TEMPORARY TABLE top_sellers AS
+SELECT salesperson_id, SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY salesperson_id;
+
+SELECT *
+FROM top_sellers
+WHERE total_sales > 100000;
+```
+
+---
+
+### Q11: Why Use RIGHT JOIN When LEFT JOIN Can Suffice the Requirement?
+
+
+---
+
+### Q12: Why Might the SQL Rank Function Skip a Sequence?
+
+**Answer:**  
+When using ranking functions, such as `RANK()` or `DENSE_RANK()`, you may see non-sequential rank values for the following reasons:
+
+1. **Ties in Data:**  
+   - With `RANK()`, if multiple rows have the same value, they receive the same rank. The next distinct value receives a rank with a gap.  
+   - **Example:** If two rows rank as 1, the next row will be ranked 3.
+   
+2. **Using `DENSE_RANK()`:**  
+   - `DENSE_RANK()` does not create gaps after ties; however, using both functions in similar queries can create differing sequences depending on the requirement.
+
+3. **Filtering or Grouping Effects:**  
+   - Changes in the dataset due to filtering or grouping may cause unexpected discontinuities in the rank sequence as the ranking resets with each partition.
+
+**Tip:**  
+Always consider which ranking function best suits your needs when ties are expected in your dataset.
+
+---
+
+### Additional Question (Q13): What are Indexes and How Do They Improve Query Performance?
+
+**Answer:**  
+- **Indexes** are special lookup tables that the database search engine can use to speed up data retrieval.  
+- **Advantages:**  
+  - **Improved Read Performance:** Significantly reduces the amount of data scanned during searches.
+  - **Faster Sorting and Filtering:** Speeds up order by and WHERE clauses.  
+- **Disadvantages:**  
+  - **Insert/Update Overhead:** Additional storage space and slower write operations due to index maintenance.
+  - **Complexity:** Too many indexes can degrade performance.
+
+**Syntax Example (Creating an Index):**
+
+```sql
+CREATE INDEX idx_employee_salary
+ON employee_table (salary);
+```
+
+---
+

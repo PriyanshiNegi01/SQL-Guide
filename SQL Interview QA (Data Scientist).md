@@ -8,8 +8,10 @@ A JOIN clause is used to combine rows from two or more tables, based on a relate
 * Inner join: Inner Join in SQL is the most common type of join. It is used to return all the rows from multiple tables where the join condition is satisfied. 
 * Left Join:  Left Join in SQL is used to return all the rows from the left table but only the matching rows from the right table where the join condition is fulfilled.
 * Right Join: Right Join in SQL is used to return all the rows from the right table but only the matching rows from the left table where the join condition is fulfilled.
-* Full Join: Full join returns all the records when there is a match in any of the tables. Therefore, it returns all the rows from the left-hand side table and all the rows from the right-hand side table.
+* Full Outer Join: Full join returns all the records when there is a match in any of the tables. Therefore, it returns all the rows from the left-hand side table and all the rows from the right-hand side table.
 ![alt text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/Joins%20in%20SQL.png)
+
+---
 
 ### Q2: Define the primary, foreign, and unique keys and the differences between them?
 
@@ -28,6 +30,8 @@ A JOIN clause is used to combine rows from two or more tables, based on a relate
 **Unique key:** It's a key that can identify each row in the table as the primary key but it can contain one null value
 
 * Every table can have more than one Unique key
+
+---
 
 ### Q3: What is the difference between BETWEEN and IN operators in SQL?
 Answer:
@@ -65,6 +69,9 @@ WHERE
         DATE_TRUNC('month', last_month.login_date) BETWEEN DATE_TRUNC('month', current_month.login_date) AND DATE_TRUNC('month', current_month.login_date) - INTERVAL '1 month'
 )
 ```
+
+---
+
 ### Q5: Describe the advantages and disadvantages of relational database vs NoSQL databases
 
 Answer:
@@ -80,6 +87,7 @@ Answer:
 
 ![Alt_text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/ezgif.com-gif-maker.jpg)
 
+---
 
 ### Q6: Assume you are given the table below on user transactions. Write a query to obtain the third transaction of every user
 
@@ -88,6 +96,8 @@ Answer:
 Answer:
 First, we obtain the transaction numbers for each user. We can do this by using the ROW_NUMBER window function, where we PARTITION by the user_id and ORDER by the transaction_date fields, calling the resulting field a transaction number. From there, we can simply take all transactions having a transaction number equal to 3.
 ![1661352088335](https://user-images.githubusercontent.com/72076328/186479695-5d2b7f36-5703-489d-87e3-6bad6ee1a9b7.jpg)
+
+---
 
 ### Q7: What do you understand by Self Join? Explain using an example
 
@@ -109,8 +119,12 @@ Ex. The organizational structure of a company may contain an employee table that
 
 P.S. we would need to take care of duplicates that may occur and consider them in the conditions.
 
+---
+
 ### Q8: Write an SQL query to join 3 tables
 ![1668274347333](https://user-images.githubusercontent.com/72076328/201538710-264494b8-62e7-4e36-8487-be449c1b441a.jpg)
+
+---
 
 ### Q9: Write a SQL query to get the third-highest salary of an employee from `employee_table` and arrange them in descending order.
 
@@ -124,6 +138,13 @@ FROM employee_table
 ORDER BY salary DESC
 OFFSET 2 ROWS
 LIMIT 1;
+```
+(MySQL style):
+```sql
+SELECT DISTINCT salary 
+FROM employee_table 
+ORDER BY salary DESC 
+LIMIT 1 OFFSET 2;
 ```
 
 Or using **DENSE_RANK()** (works in SQL Server, PostgreSQL, etc.):
@@ -177,6 +198,8 @@ FROM top_sellers
 WHERE total_sales > 100000;
 ```
 
+---
+
 ### Q11: Why use Right Join When Left Join can suffice the requirement?
 
 Answer:
@@ -196,6 +219,8 @@ Here are a few examples:
 
 𝟯. 𝗪𝗵𝗲𝗻 𝘂𝘀𝗶𝗻𝗴 𝗼𝘂𝘁𝗲𝗿 𝗷𝗼𝗶𝗻𝘀: If the query requires an outer join, a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 may be used to return all the rows from the right table, including those with no matching rows in the left table.
 It's important to note that while a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 can provide additional functionality in certain cases, it may also make the query more complex and difficult to read. In most cases, a 𝗟𝗘𝗙𝗧 𝗝𝗢𝗜𝗡 is the preferred method for joining tables in MySQL.
+
+---
 
 ### Q12: Why Rank skips sequence?
 

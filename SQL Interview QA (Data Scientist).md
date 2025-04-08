@@ -1,25 +1,8 @@
-# SQL and DB Interview QA (Data Scientists) # 
+# SQL and DB Interview QA (Data Scientists)
 
-## Questions ##
-* [Q1: What are joins in SQL and discuss its types?](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q1-what-are-joins-in-sql-and-discuss-its-types)
-* [Q2: Define the primary, foreign, and unique keys and the differences between them?](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q2-define-the-primary-foreign-and-unique-keys-and-the-differences-between-them)
-* [Q3: What is the difference between BETWEEN and IN operators in SQL?](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q3-what-is-the-difference-between-between-and-in-operators-in-sql)
-* [Q4: Assume you have the given table below which contains information on user logins. Write a query to obtain the number of reactivated users (Users who did not log in the previous month and then logged in the current month)](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q4-assume-you-have-the-given-table-below-which-contains-information-on-user-logins-write-a-query-to-obtain-the-number-of-reactivated-users-users-who-did-not-log-in-the-previous-month-and-then-logged-in-the-current-month)
-![Alt_text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/Screenshot%202022-07-31%20201033.png)
-* [Q5: Describe the advantages and disadvantages of relational database vs NoSQL databases](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q5-describe-the-advantages-and-disadvantages-of-relational-database-vs-nosql-databases)
-* [Q6: Assume you are given the table below on user transactions. Write a query to obtain the third transaction of every user](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q6-assume-you-are-given-the-table-below-on-user-transactions-write-a-query-to-obtain-the-third-transaction-of-every-user)
-![1661352126442](https://user-images.githubusercontent.com/72076328/186479577-da475779-b4de-45ef-b1ec-79ca5df0dad5.png)
-* [Q7: What do you understand by Self Join? Explain using an example](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q7-what-do-you-understand-by-self-join-explain-using-an-example)
-* [Q8: Write an SQL query to join 3 tables](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q8-write-an-sql-query-to-join-3-tables)
-* [Q9: Write a SQL query to get the third-highest salary of an employee from employee_table and arrange them in descending order.](https://github.com/youssefHosni/Data-Science-Interview-Questions-Answers/blob/main/SQL%20%26%20DB%20Interview%20Questions%20%26%20Answers%20for%20Data%20Scientists.md#q9-write-a-sql-query-to-get-the-third-highest-salary-of-an-employee-from-employee_table-and-arrange-them-in-descending-order)
-* [Q10: What is the difference between temporary tables and common table expressions?](https://github.com/soopertramp/Data-Science-Interview-Questions-Answers/blob/main/SQL%20&%20DB%20Interview%20Questions%20&%20Answers%20for%20Data%20Scientists.md#q10-what-is-the-difference-between-temporary-tables-and-common-table-expressions)
-* [Q11: Why use Right Join When Left Join can suffice the requirement?](https://github.com/soopertramp/Data-Science-Interview-Questions-Answers/blob/main/SQL%20&%20DB%20Interview%20Questions%20&%20Answers%20for%20Data%20Scientists.md#q11-why-use-right-join-when-left-join-can-suffice-the-requirement)
-* [Q12: Why Rank skips sequence?](https://github.com/soopertramp/Data-Science-Interview-Questions-Answers/blob/main/SQL%20&%20DB%20Interview%20Questions%20&%20Answers%20for%20Data%20Scientists.md#q12-why-rank-skips-sequence)
----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## Questions & Answers
 
-## Questions & Answers ##
-
-### Q1: What are joins in SQL and discuss its types? ###
+### Q1: What are joins in SQL and discuss its types?
 A JOIN clause is used to combine rows from two or more tables, based on a related column between them. It is used to merge two tables or retrieve data from there. There are 4 types of joins: inner join left join, right join, and full join.
 
 * Inner join: Inner Join in SQL is the most common type of join. It is used to return all the rows from multiple tables where the join condition is satisfied. 
@@ -28,7 +11,7 @@ A JOIN clause is used to combine rows from two or more tables, based on a relate
 * Full Join: Full join returns all the records when there is a match in any of the tables. Therefore, it returns all the rows from the left-hand side table and all the rows from the right-hand side table.
 ![alt text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/Joins%20in%20SQL.png)
 
-### Q2: Define the primary, foreign, and unique keys and the differences between them? ###
+### Q2: Define the primary, foreign, and unique keys and the differences between them?
 
 **Primary key:** Is a key that is used to uniquely identify each row or record in the table, it can be a single column or composite pk that contains more than one column
 
@@ -46,7 +29,7 @@ A JOIN clause is used to combine rows from two or more tables, based on a relate
 
 * Every table can have more than one Unique key
 
-### Q3: What is the difference between BETWEEN and IN operators in SQL? ###
+### Q3: What is the difference between BETWEEN and IN operators in SQL?
 Answer:
 
 The SQL **BETWEEN** operator selects values within a given range. It is inclusive of both the ranges, begin and end values are included.  The values can be text, date, numbers, or other
@@ -57,7 +40,7 @@ The **IN** operator is used to select rows in which a certain value exists in a 
 
 For example, select COLUMN from tablename where 'USA' in (country);
 
-IN is mainly best for categorical variables(it can be used with Numerical as well) whereas Between is for Numerical Variables
+IN is mainly best for Categorical Variables(it can be used with Numerical as well) whereas Between is for Numerical Variables
 ![alt_text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/Betweem%26IN.png)
 
 ### Q4: Assume you have the given table below which contains information on user logins. Write a query to obtain the number of reactivated users (Users who did not log in the previous month and then logged in the current month) ###
@@ -82,7 +65,7 @@ WHERE
         DATE_TRUNC('month', last_month.login_date) BETWEEN DATE_TRUNC('month', current_month.login_date) AND DATE_TRUNC('month', current_month.login_date) - INTERVAL '1 month'
 )
 ```
-### Q5: Describe the advantages and disadvantages of relational database vs NoSQL databases ###
+### Q5: Describe the advantages and disadvantages of relational database vs NoSQL databases
 
 Answer:
 
@@ -98,7 +81,7 @@ Answer:
 ![Alt_text](https://github.com/youssefHosni/Data-Science-Interview-Questions/blob/main/Figures/ezgif.com-gif-maker.jpg)
 
 
-### Q6: Assume you are given the table below on user transactions. Write a query to obtain the third transaction of every user ###
+### Q6: Assume you are given the table below on user transactions. Write a query to obtain the third transaction of every user
 
 ![1661352126442](https://user-images.githubusercontent.com/72076328/186479648-5dcbf0a3-46e3-46b4-99ab-94feeace3dca.png)
 
@@ -106,7 +89,7 @@ Answer:
 First, we obtain the transaction numbers for each user. We can do this by using the ROW_NUMBER window function, where we PARTITION by the user_id and ORDER by the transaction_date fields, calling the resulting field a transaction number. From there, we can simply take all transactions having a transaction number equal to 3.
 ![1661352088335](https://user-images.githubusercontent.com/72076328/186479695-5d2b7f36-5703-489d-87e3-6bad6ee1a9b7.jpg)
 
-### Q7: What do you understand by Self Join? Explain using an example ###
+### Q7: What do you understand by Self Join? Explain using an example
 
 Answer:
 
@@ -126,15 +109,15 @@ Ex. The organizational structure of a company may contain an employee table that
 
 P.S. we would need to take care of duplicates that may occur and consider them in the conditions.
 
-### Q8: Write an SQL query to join 3 tables ###
+### Q8: Write an SQL query to join 3 tables
 ![1668274347333](https://user-images.githubusercontent.com/72076328/201538710-264494b8-62e7-4e36-8487-be449c1b441a.jpg)
 
 
-### Q9: Write a SQL query to get the third-highest salary of an employee from employee_table and arrange them in descending order. ###
+### Q9: Write a SQL query to get the third-highest salary of an employee from employee_table and arrange them in descending order.
 
 Answer:
 
-### Q10: What is the difference between temporary tables and common table expressions? ###
+### Q10: What is the difference between temporary tables and common table expressions?
 
 Answer:
 
@@ -154,7 +137,7 @@ Answer:
 
 In summary, temporary tables are physical tables that persist in the database and can be accessed from any session, while CTEs are virtual tables that exist only within the scope of a single query and are discarded once the query is complete. Both temporary tables and CTEs can be useful tools for simplifying complex queries and storing intermediate results.
 
-### Q11: Why use Right Join When Left Join can suffice the requirement? ###
+### Q11: Why use Right Join When Left Join can suffice the requirement?
 
 Answer:
 In MySQL, the 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 𝗮𝗻𝗱 𝗟𝗘𝗙𝗧 𝗝𝗢𝗜𝗡 are used to retrieve data from multiple tables by joining them based on a specified condition.
@@ -174,7 +157,7 @@ Here are a few examples:
 𝟯. 𝗪𝗵𝗲𝗻 𝘂𝘀𝗶𝗻𝗴 𝗼𝘂𝘁𝗲𝗿 𝗷𝗼𝗶𝗻𝘀: If the query requires an outer join, a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 may be used to return all the rows from the right table, including those with no matching rows in the left table.
 It's important to note that while a 𝗥𝗜𝗚𝗛𝗧 𝗝𝗢𝗜𝗡 can provide additional functionality in certain cases, it may also make the query more complex and difficult to read. In most cases, a 𝗟𝗘𝗙𝗧 𝗝𝗢𝗜𝗡 is the preferred method for joining tables in MySQL.
 
-### Q12: Why Rank skips sequence? ###
+### Q12: Why Rank skips sequence?
 
 Answers:
 In MySQL, the rank function may skip a sequence of numbers when using the `DENSE_RANK()` function or the `RANK()` function, depending on the data and the query. The `DENSE_RANK()` function assigns a unique rank to each distinct value in a result set, whereas the `RANK()` function assigns the same rank to the duplicate values.

@@ -112,30 +112,70 @@ P.S. we would need to take care of duplicates that may occur and consider them i
 ### Q8: Write an SQL query to join 3 tables
 ![1668274347333](https://user-images.githubusercontent.com/72076328/201538710-264494b8-62e7-4e36-8487-be449c1b441a.jpg)
 
+### Q9: Write a SQL query to get the third-highest salary of an employee from `employee_table` and arrange them in descending order.
 
-### Q9: Write a SQL query to get the third-highest salary of an employee from employee_table and arrange them in descending order.
+**Answer:**
 
-Answer:
+To get the third-highest salary from the employee table, we can use the `DENSE_RANK()` or a subquery with `DISTINCT` and `LIMIT/OFFSET`. Here's a method using **subquery with `DISTINCT` and `LIMIT`** (PostgreSQL style):
 
-### Q10: What is the difference between temporary tables and common table expressions?
+```sql
+SELECT DISTINCT salary
+FROM employee_table
+ORDER BY salary DESC
+OFFSET 2 ROWS
+LIMIT 1;
+```
 
-Answer:
+Or using **DENSE_RANK()** (works in SQL Server, PostgreSQL, etc.):
 
-𝗧𝗲𝗺𝗽𝗼𝗿𝗮𝗿𝘆 𝘁𝗮𝗯𝗹𝗲𝘀 and 𝗖𝗧𝗘s are both used to store intermediate results in MySQL, but there are some key differences between the two:
+```sql
+SELECT *
+FROM (
+    SELECT *,
+           DENSE_RANK() OVER (ORDER BY salary DESC) AS rank
+    FROM employee_table
+) ranked_salaries
+WHERE rank = 3;
+```
 
-𝗗𝗲𝗳𝗶𝗻𝗶𝘁𝗶𝗼𝗻: A temporary table is a physical table that is created in the database and persists until it is explicitly dropped or the session ends. A CTE is a virtual table that is defined only within the scope of a single SQL statement.
+---
 
-𝗦𝘁𝗼𝗿𝗮𝗴𝗲: Temporary tables are stored in the database and occupy physical disk space. CTEs are not stored on disk and exist only in memory for the duration of the query.
+### Q10: What is the difference between Temporary Tables and Common Table Expressions (CTEs)?
 
-𝗔𝗰𝗰𝗲𝘀𝘀: Temporary tables can be accessed from any session that has the appropriate privileges. CTEs are only accessible within the scope of the query in which they are defined.
+| Feature                   | Temporary Tables                            | Common Table Expressions (CTEs)              |
+|---------------------------|---------------------------------------------|-----------------------------------------------|
+| **Persistence**          | Persist during the session                  | Exists only during execution of a single query|
+| **Reusability**          | Can be used across multiple queries          | Not reusable outside the query                |
+| **Storage**              | Stored in the tempdb (disk/memory)          | Stored in memory for the duration of the query|
+| **Syntax**               | `CREATE TEMPORARY TABLE`                    | `WITH cte_name AS (...)`                      |
+| **Use Case**             | Large intermediate data, multiple uses      | Simpler queries, recursion, readable code     |
+| **Performance Impact**   | Slightly higher overhead                    | Lightweight, good for quick transformations   |
 
-𝗟𝗶𝗳𝗲𝘀𝗽𝗮𝗻: Temporary tables persist until they are explicitly dropped or the session ends. CTEs are only available for the duration of the query in which they are defined and are then discarded.
+**CTE Example:**
 
-𝗦𝘆𝗻𝘁𝗮𝘅: Temporary tables are created using the CREATE TEMPORARY TABLE statement, while CTEs are defined using the WITH clause.
+```sql
+WITH Sales_CTE AS (
+  SELECT salesperson_id, SUM(sales) AS total_sales
+  FROM sales_data
+  GROUP BY salesperson_id
+)
+SELECT *
+FROM Sales_CTE
+WHERE total_sales > 100000;
+```
 
-𝗣𝘂𝗿𝗽𝗼𝘀𝗲: Temporary tables are typically used to store intermediate results that will be used in multiple queries, while CTEs are used to simplify complex queries by breaking them down into smaller, more manageable parts.
+**Temporary Table Example:**
 
-In summary, temporary tables are physical tables that persist in the database and can be accessed from any session, while CTEs are virtual tables that exist only within the scope of a single query and are discarded once the query is complete. Both temporary tables and CTEs can be useful tools for simplifying complex queries and storing intermediate results.
+```sql
+CREATE TEMPORARY TABLE top_sellers AS
+SELECT salesperson_id, SUM(sales) AS total_sales
+FROM sales_data
+GROUP BY salesperson_id;
+
+SELECT *
+FROM top_sellers
+WHERE total_sales > 100000;
+```
 
 ### Q11: Why use Right Join When Left Join can suffice the requirement?
 
